@@ -54,7 +54,7 @@ See [`references.md`](./references.md) for the full citation list.
 
 ## About this project
 
-This project was built as part of independent research ahead of applying to the Global Korea Scholarship (GKS-UG), Medicinal Biotechnology, Dong-A University. Correspondence with Professor Kim Seok-ho (Dong-A University, Department of Medicinal Biotechnology), whose lab's published work is cited here, helped shape the direction of this review.
+This project was built as part of independent research ahead of applying to the Global Korea Scholarship (GKS-UG), Medicinal Biotechnology, Dong-A University. Correspondence with Professor Kim Seok-ho's laboratory (Dong-A University, Department of Medicinal Biotechnology) clarified their current research focus, which directly informed this project's scope.
 
 ## Next steps
 
