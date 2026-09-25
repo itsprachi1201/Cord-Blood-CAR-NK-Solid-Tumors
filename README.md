@@ -56,8 +56,6 @@ See [`references.md`](./references.md) for the full citation list.
 
 This project was built as part of independent research ahead of applying to the Global Korea Scholarship (GKS-UG), Medicinal Biotechnology, Dong-A University. Correspondence with Professor Kim Seok-ho's laboratory (Dong-A University, Department of Medicinal Biotechnology) clarified their current research focus, which directly informed this project's scope.
 
-## Next steps
+## What I'm working on next
 
-- Complete a full 3-5 page written literature review expanding on the background above
-- Continue reading into combination-therapy approaches for overcoming TME immunosuppression
-- Learn practical lab methods (cell culture, flow cytometry) relevant to this research area
+I'm turning this into a full 3-5 page literature review, going deeper into the sources above. I also want to read more into combination-therapy approaches that try to overcome TME immunosuppression directly, since that's the harder of the two bottlenecks this project points to. Longer term, I'm hoping to get hands-on with practical lab methods like cell culture and flow cytometry — the kind of skills this whole project has made me want to actually use, not just read about.
