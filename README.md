@@ -40,7 +40,7 @@ Drawing on the sources cited throughout this project, two categories of approach
 
 **Biological approaches**
 - Cytokine priming with IL-15 (alone or with IL-2), shown to restore or enhance UCB-NK cytotoxicity toward peripheral blood NK cell levels (Sarvaria et al., 2017)
-- IL-15 armoring — engineering the CAR-NK cell to produce its own IL-15, supporting persistence without relying on external cytokine supply (Kim et al., 2025)
+- IL-15 armoring, which essentially engineers the CAR-NK cell to produce its own fuel supply, bypassing its reliance on external cytokines (Kim et al., 2025).
 - CAR engineering itself, which gives the cell a targeted recognition mechanism that doesn't depend on its naturally weaker activating receptors (Kim et al., 2025)
 
 **Where computational/AI approaches could plausibly contribute**
