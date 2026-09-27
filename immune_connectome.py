@@ -19,12 +19,18 @@ inhibitory_receptors = ['NKG2A']
 engineering = ['CAR_construct', 'IL_15']
 
 # Tumor microenvironment suppressive factors
-tme_factors = ['TGF_Beta', 'PD_L1']
+tme_factors = ['TGF_Beta', 'PD_L1', 'ECM_Barrier']
+
+# Physical barrier components (distinct from biochemical suppression)
+physical_barrier = ['LOX']
+
+# Engineering solution for the physical barrier
+mmp_solution = ['MMP_Engineering']
 
 # Core cell and target
 core = ['UCB_NK_cell', 'Tumor_cell']
 
-all_nodes = activating_receptors + inhibitory_receptors + engineering + tme_factors + core
+all_nodes = activating_receptors + inhibitory_receptors + engineering + mmp_solution + tme_factors + physical_barrier + core
 for node in all_nodes:
     immune_network.add_node(node)
 
@@ -62,13 +68,43 @@ edges_with_evidence = [
 
     ('PD_L1', 'UCB_NK_cell', 'suppresses',
      'Established TME immunosuppression mechanism — PD-L1/checkpoint signaling suppresses immune cell activity in solid tumors'),
+
+    ('LOX', 'ECM_Barrier', 'builds_physical_barrier',
+     'Frontiers in Immunology, 2026, "Research progress on tumor extracellular matrix stiffness and immunosuppression" — LOX-driven collagen cross-linking stiffens the tumor ECM, creating a dense physical barrier'),
+
+    ('ECM_Barrier', 'UCB_NK_cell', 'blocks_infiltration',
+     'Frontiers in Immunology, 2026 (same source) — a dense ECM is the primary physical obstacle to NK cell infiltration; NK cells present near fibrotic tumors show severely restricted invasion depth'),
+
+    ('MMP_Engineering', 'ECM_Barrier', 'degrades_barrier',
+     'Frontiers in Immunology, 2026 (same source) — direct enzymatic cleavage of ECM components (e.g. via MMPs) can rapidly disrupt the physical barrier and enhance immune cell infiltration'),
 ]
 
 for source, target, effect, citation in edges_with_evidence:
     immune_network.add_edge(source, target, effect=effect, citation=citation)
 
 # 4. Draw the network
-pos = nx.spring_layout(immune_network, seed=42)  # seed=42 just keeps the layout consistent each time you run it
+# Manual circular layout: place every node that connects directly to UCB_NK_cell
+# evenly around it, then push LOX and MMP_Engineering (which attach one hop further,
+# via ECM_Barrier) out beyond the main circle at an offset angle. This guarantees
+# no overlapping nodes or edges, unlike a force-directed layout which can vary run to run.
+import math
+
+hub = 'UCB_NK_cell'
+spoke_order = ['NKG2C', 'CD16', 'DNAM_1', 'Granzyme_B', 'CAR_construct', 'IL_15',
+               'NKG2A', 'TGF_Beta', 'PD_L1', 'ECM_Barrier', 'Tumor_cell']
+radius = 1.3
+pos = {hub: (0.0, 0.0)}
+n = len(spoke_order)
+for i, node in enumerate(spoke_order):
+    angle = 2 * math.pi * i / n
+    pos[node] = (radius * math.cos(angle), radius * math.sin(angle))
+
+# ECM_Barrier's satellites: place them further out, offset to either side of its angle
+ecm_index = spoke_order.index('ECM_Barrier')
+ecm_angle = 2 * math.pi * ecm_index / n
+outer_radius = 2.3
+pos['LOX'] = (outer_radius * math.cos(ecm_angle - 0.3), outer_radius * math.sin(ecm_angle - 0.3))
+pos['MMP_Engineering'] = (outer_radius * math.cos(ecm_angle + 0.3), outer_radius * math.sin(ecm_angle + 0.3))
 
 # Color nodes by category for clarity
 node_colors = []
@@ -79,6 +115,10 @@ for node in immune_network.nodes():
         node_colors.append('#9467bd')       # purple = inhibitory
     elif node in tme_factors:
         node_colors.append('#d62728')       # red = tumor suppression
+    elif node in physical_barrier:
+        node_colors.append('#8b4513')       # brown = physical/structural barrier
+    elif node in mmp_solution:
+        node_colors.append('#1f77b4')       # blue = engineered addition (same as other solutions)
     elif node in engineering:
         node_colors.append('#1f77b4')       # blue = engineered addition
     else:
@@ -91,22 +131,26 @@ nx.draw_networkx_labels(immune_network, pos, font_size=8, font_weight='bold')
 # - positive: helps the NK cell act against the tumor
 # - weak_baseline: the receptor is present but naturally under-expressed (not "suppressed", just weak)
 # - suppresses: something is actively working against the NK cell's function
-positive_effects = ['restores_cytotoxicity', 'adds_targeted_recognition', 'attacks']
+positive_effects = ['restores_cytotoxicity', 'adds_targeted_recognition', 'attacks', 'degrades_barrier']
 weak_baseline_effects = ['weak_baseline_activation', 'weak_baseline_cytotoxicity']
-suppress_effects = ['inhibits', 'suppresses']
+suppress_effects = ['inhibits', 'suppresses', 'blocks_infiltration']
+structural_effects = ['builds_physical_barrier']
 
 pos_edges = [(u, v) for u, v, d in immune_network.edges(data=True) if d['effect'] in positive_effects]
 weak_edges = [(u, v) for u, v, d in immune_network.edges(data=True) if d['effect'] in weak_baseline_effects]
 neg_edges = [(u, v) for u, v, d in immune_network.edges(data=True) if d['effect'] in suppress_effects]
+structural_edges = [(u, v) for u, v, d in immune_network.edges(data=True) if d['effect'] in structural_effects]
 
 nx.draw_networkx_edges(immune_network, pos, edgelist=pos_edges, edge_color='green', width=2, arrowsize=20)
 nx.draw_networkx_edges(immune_network, pos, edgelist=weak_edges, edge_color='#d4a017', style='dotted', width=2, arrowsize=20)  # amber dotted = weak, not suppressed
 nx.draw_networkx_edges(immune_network, pos, edgelist=neg_edges, edge_color='red', style='dashed', width=2, arrowsize=20)      # red dashed = actively suppresses
+nx.draw_networkx_edges(immune_network, pos, edgelist=structural_edges, edge_color='#8b4513', style='solid', width=2, arrowsize=20)  # brown solid = builds structural barrier
 
 plt.title("Immunological Connectome:\nCord Blood CAR-NK vs Tumor Microenvironment", fontsize=13, fontweight='bold')
 plt.axis('off')
+plt.margins(0.15)  # adds breathing room around the outermost nodes so labels never get clipped
 plt.tight_layout()
-plt.savefig('immune_connectome.png', dpi=200)
+plt.savefig('immune_connectome.png', dpi=200, bbox_inches='tight')  # bbox_inches='tight' trims to content while keeping full labels
 plt.show()
 
 # 5. Print out the citation list so it's easy to copy into your references section
