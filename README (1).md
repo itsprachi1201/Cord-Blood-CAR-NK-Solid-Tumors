@@ -1,0 +1,64 @@
+# Cord Blood CAR-NK Cells and the Tumor Microenvironment: An Immunological Connectome
+
+An independent literature review and network-based visualization exploring why cord blood-derived CAR-NK cells struggle against solid tumors like breast cancer, and what current research suggests could help.
+
+## Why this project
+
+In neuroscience, researchers have mapped the fruit fly brain as a "connectome" — a network of neurons (nodes) and synapses (edges) — to see where signals travel well and where they break down. This project borrows that same structural idea and applies it to immunology: instead of neurons and synapses, the nodes here are NK cell receptors and tumor microenvironment (TME) factors, and the edges show how they help or hinder a cord blood-derived CAR-NK cell's ability to fight a solid tumor.
+
+This isn't a claim of new scientific discovery. It's a way of organizing and visualizing existing, cited research to make a compounding problem easier to see clearly.
+
+## Background
+
+Cord blood is an attractive source for NK cell therapy because it's available "off-the-shelf," carries a low risk of graft-versus-host disease, and doesn't require strict donor matching. Engineering these cells with a Chimeric Antigen Receptor (CAR) gives them the ability to target specific tumor proteins directly.
+
+But cord blood-derived NK (UCB-NK) cells come with a built-in disadvantage: they are developmentally immature. Compared to adult peripheral blood NK cells, they show **decreased expression of activating receptors and cytotoxic molecules** (CD16, DNAM-1, NKG2C, granzyme B, perforin), and **higher expression of the inhibitory receptor NKG2A** (Sarvaria et al., 2017, *Frontiers in Immunology*). In plain terms: even before a UCB-NK cell reaches a tumor, its "attack signal" starts out weaker than an adult donor cell's would.
+
+## The compounding bottleneck
+
+This project's central observation, drawn from the cited literature, is that UCB-NK cells face **three layers of disadvantage, not one**:
+
+1. **Baseline immaturity** — weak activating receptor expression and strong inhibitory signaling, present before the cell ever encounters a tumor (Sarvaria et al., 2017).
+2. **Biochemical TME suppression** — once inside a solid tumor, factors like TGF-beta and PD-L1 further suppress immune cell function, a well-documented mechanism in solid tumor immunotherapy research generally, and specifically discussed as a persistence challenge for CAR-NK cells (Lee et al., 2025, *Cancer Immunology, Immunotherapy*).
+3. **A physical barrier** — separate from biochemical suppression, solid tumors like breast cancer also build a dense, stiffened extracellular matrix (ECM). The enzyme LOX cross-links collagen fibers, creating a physical wall that restricts how deeply NK cells can actually penetrate the tumor, independent of any chemical signaling (Wu et al., 2026, *Frontiers in Immunology*).
+
+These three layers compound each other, which is part of why translating CAR-NK therapy from blood cancers to solid tumors like breast cancer has been difficult.
+
+## The connectome diagram
+
+![Immunological Connectome diagram](immune_connectome.png)
+
+The diagram above maps this relationship. Colors distinguish four kinds of connection:
+- **Green (solid):** helps the CAR-NK cell act against the tumor
+- **Amber (dotted):** a receptor that is naturally under-expressed at baseline — weak, but not actively blocked
+- **Red (dashed):** something actively suppressing the cell's function or physically blocking it
+- **Brown (solid):** a structural process that builds the physical ECM barrier
+
+Every edge in this diagram is backed by a citation, listed in full in [`references.md`](./references.md) and printed directly in the code's output. No relationship strength in this diagram is numerically invented — labels are qualitative and traceable to a real source. The code used to generate it is in [`immune_connectome.py`](./immune_connectome.py).
+
+## What current research suggests could help
+
+Drawing on the sources cited throughout this project, two categories of approach are relevant to closing this gap:
+
+**Biological approaches**
+- Cytokine priming with IL-15 (alone or with IL-2), shown to restore or enhance UCB-NK cytotoxicity toward peripheral blood NK cell levels (Sarvaria et al., 2017)
+- IL-15 armoring — engineering the CAR-NK cell to produce its own IL-15, supporting persistence without relying on external cytokine supply (Lee et al., 2025)
+- CAR engineering itself, which gives the cell a targeted recognition mechanism that doesn't depend on its naturally weaker activating receptors (Lee et al., 2025)
+- MMP engineering or LOX inhibition, to enzymatically break down the ECM's physical barrier and improve how deeply NK cells can actually infiltrate the tumor (Wu et al., 2026)
+
+**Where computational/AI approaches could plausibly contribute**
+- Donor or cell-line screening using existing genomic and flow cytometry data, to identify which cord blood units start with a more favorable receptor profile before expansion
+- Computational protein/receptor design tools to help optimize CAR constructs for tumor specificity and reduce reliance on the cell's weaker native signaling
+- These are proposed directions based on how computational tools are used elsewhere in immunotherapy research — not claims of a built or tested solution here
+
+## Sources
+
+See [`references.md`](./references.md) for the full citation list.
+
+## About this project
+
+This project was built as part of independent research ahead of applying to the Global Korea Scholarship (GKS-UG), Medicinal Biotechnology, Dong-A University. Correspondence with Professor Kim Seok-ho's laboratory (Dong-A University, Department of Medicinal Biotechnology) clarified their current research focus, which directly informed this project's scope.
+
+## What I'm working on next
+
+I'm turning this into a full 3-5 page literature review, going deeper into the sources above. I also want to read more into combination-therapy approaches that try to overcome TME immunosuppression directly, since that's one of the harder bottlenecks this project points to. Longer term, I'm hoping to get hands-on with practical lab methods like cell culture and flow cytometry — the kind of skills this whole project has made me want to actually use, not just read about.
