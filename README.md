@@ -28,7 +28,7 @@ These three layers compound each other, which is part of why translating CAR-NK 
 
 ![Immunological Connectome diagram](immune_connectome.png)
 
-The diagram above maps this relationship. Colors distinguish four kinds of connection:
+The diagram above maps this relationship, laid out as three labeled problem columns converging on the NK cell, with interventions kept visually separate on the right. A full legend is built into the image itself. Colors distinguish four kinds of connection:
 - **Green (solid):** helps the CAR-NK cell act against the tumor
 - **Amber (dotted):** a receptor that is naturally under-expressed at baseline — weak, but not actively blocked
 - **Red (dashed):** something actively suppressing the cell's function or physically blocking it
