@@ -1,0 +1,24 @@
+# References
+
+## Sources supporting the argument
+
+1. Sarvaria A, Jawdat D, Madrigal JA, Saudemont A. Umbilical Cord Blood Natural Killer Cells, Their Characteristics, and Potential Clinical Applications. *Frontiers in Immunology*. 2017. — Cord blood NK cell immaturity phenotype (lower CD16, DNAM-1, NKG2C, granzyme B, perforin; higher NKG2A) and IL-15/IL-2 restoring cytotoxicity.
+
+2. Lee J, Song J, Yoo W, Choi H, Jung D, Choi E, Jo SG, Gong EY, Jeoung YH, Park YS, Son WC, Lee H, Lee H, Kim JJ, Kim T, Lee S, Park JJ, Kim TD, Kim S. Therapeutic potential of anti-ErbB3 chimeric antigen receptor natural killer cells against breast cancer. *Cancer Immunology, Immunotherapy*. 2025;74(2):73. doi: [10.1007/s00262-024-03923-y](https://doi.org/10.1007/s00262-024-03923-y). — CAR-NK engineering against breast cancer using cord blood mononuclear cells, IL-15-secreting constructs built for persistence, and discussion of open challenges. Seok-Ho Kim is senior/corresponding author, confirmed via the journal's own metadata (email cvaccine@dau.ac.kr — the same address he replied to me from).
+
+3. Viel S, Marçais A, Guimaraes FS, Loftus R, Rabilloud J, Grau M, et al. TGF-β inhibits the activation and functions of NK cells by repressing the mTOR pathway. *Science Signaling*. 2016;9(415):ra19. doi: [10.1126/scisignal.aad1884](https://doi.org/10.1126/scisignal.aad1884). — Direct, NK-specific evidence that TGF-β suppresses NK cell activation and function via the mTOR pathway. Used for the TGF-β → NK cell edge.
+
+4. Hsu J, Hodgins JJ, Marathe M, Nicolai CJ, Bourgeois-Daigneault MC, Trevino TN, et al. Contribution of NK cells to immunotherapy mediated by PD-1/PD-L1 blockade. *Journal of Clinical Investigation*. 2018;128(10):4654-4668. doi: [10.1172/JCI99317](https://doi.org/10.1172/JCI99317). — Direct, NK-specific evidence that PD-1 on NK cells, engaged by PD-L1-positive tumor cells, suppresses NK-mediated antitumor immunity. Used for the PD-L1 → NK cell edge, replacing an earlier version of this project that cited a general TME review (Giraldo et al., 2019) for this specific claim — that review's PD-L1 discussion is actually T cell-focused, not NK-specific, so it was swapped for this more precise source.
+
+5. Wu F, Zhang P, Wu W, Hou T, Jiang X, Huang T. Research progress on tumor extracellular matrix stiffness and immunosuppression. *Frontiers in Immunology*. 2026;17:1852616. doi: [10.3389/fimmu.2026.1852616](https://doi.org/10.3389/fimmu.2026.1852616). — Review of how ECM stiffness suppresses immunity, broken down by section so each mechanism is attributed to the right cell type:
+   - **NK-specific effects (Section 2.2.4):** CD44-mediated anchoring limiting infiltration in pancreatic cancer; ECM components shifting NK cells from cytotoxicity toward cytokine secretion (skin graft and melanoma models); mineralized collagen thickening the tumor glycocalyx and impairing NK killing (breast cancer bone metastasis model).
+   - **Indirect effects (Section 3):** cancer-associated fibroblasts (CAFs) stiffen the matrix via LOXL2 and PLOD2 (3.1); separately, stiffness induces tumor cells (not CAFs) to upregulate PD-L1 (3.2).
+   - **Interventions (Section 4):** hyaluronidase delivery improved NK-92 cell infiltration in a pancreatic cancer model (4.1.1); LOX/LOXL2 inhibition improved T cell migration and anti-PD-1 response — any NK cell benefit is my extrapolation, not a direct finding (4.1.2); the review also notes real risks (indiscriminate matrix degradation may promote invasion or bleeding) and that the LOXL2 antibody simtuzumab showed no clinical benefit in phase II trials.
+
+## Background reading (not used as direct support for diagram edges)
+
+6. Jung D, Choi E, Jeoung YH, Lee J, Gong EY, Jo SG, Noh K, Ha K, Wee G, Kim H, Jung J, Kim S. Nanobody-Based CAR NK Cells for Possible Immunotherapy of Mesothelin+ Tumors. *Immune Network*. 2025;25(3):e23. doi: [10.4110/in.2025.25.e23](https://immunenetwork.org/DOIx.php?id=10.4110%2Fin.2025.25.e23). — Nanobody-based CAR-NK cells built from ex vivo expanded umbilical cord blood-derived NK cells, active against mesothelin-positive pancreatic cancer. Dana Jung is first author; Seok-Ho Kim is senior/corresponding author (Dong-A University). Read as background on current cord blood CAR-NK work at Dong-A; its antigen target (mesothelin, pancreatic cancer) is outside this project's breast cancer scope, so it's not cited in the diagram.
+
+## Note on an earlier version of this project
+
+An earlier draft of this project cited Giraldo et al. (2019), *British Journal of Cancer*, for the TGF-β and PD-L1 → NK cell edges. On closer reading, that paper's PD-L1 discussion is specifically about T cells, not NK cells — so I replaced it with the two NK-specific primary papers above (Viel et al., 2016 and Hsu et al., 2018). I'm leaving this note in because catching and fixing my own citation mistake felt like a more honest thing to show than quietly deleting it.
